@@ -15,6 +15,10 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/login`, payload);
   }
 
+  signup(payload: { fullname: string; email: string; pincode: string; city: string; state: string; password: string; confirm_password: string }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/signup`, payload);
+  }
+
   logout(): void {
     localStorage.removeItem('token');
   }

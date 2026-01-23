@@ -8,10 +8,10 @@
 
         <div class="form-group">
           <label>Full Name</label>
-          <input type="text" placeholder="Enter your name" formControlName="name" />
-          @if(signupForm.get('name')?.touched) {
+          <input type="text" placeholder="Enter your name" formControlName="fullname" />
+          @if(signupForm.get('fullname')?.touched) {
             <div class="error-box">
-              @if (signupForm.get('name')?.errors?.['required']) {
+              @if (signupForm.get('fullname')?.errors?.['required']) {
                 <small class="error">Name is required</small>
               }
             </div>
@@ -36,17 +36,102 @@
         }
         </div>
 
+        <!-- Address Row -->
+        <div class="form-row">
+
+          <!-- Pincode -->
+          <div class="form-group pincode">
+            <label>Pincode</label>
+            <input
+              type="text"
+              placeholder="Pincode"
+              formControlName="pincode"
+              maxlength="6"
+            />
+            @if (signupForm.get('pincode')?.touched) {
+              <div class="error-box">
+                @if (signupForm.get('pincode')?.errors?.['required']) {
+                  <small class="error">Required</small>
+                }
+                @if (signupForm.get('pincode')?.errors?.['pattern']) {
+                  <small class="error">Invalid</small>
+                }
+              </div>
+            }
+          </div>
+
+          <!-- City -->
+          <div class="form-group city">
+            <label>City</label>
+            <input
+              type="text"
+              placeholder="City"
+              formControlName="city"
+            />
+            @if (signupForm.get('city')?.touched) {
+              <div class="error-box">
+                @if (signupForm.get('city')?.errors?.['required']) {
+                  <small class="error">Required</small>
+                }
+              </div>
+            }
+          </div>
+
+          <!-- State -->
+          <div class="form-group state">
+            <label>State</label>
+            <input
+              type="text"
+              placeholder="State"
+              formControlName="state"
+            />
+            @if (signupForm.get('state')?.touched) {
+              <div class="error-box">
+                @if (signupForm.get('state')?.errors?.['required']) {
+                  <small class="error">Required</small>
+                }
+              </div>
+            }
+          </div>
+
+        </div>
+
+
         <div class="form-group">
           <label>Password</label>
-          <input type="password" placeholder="Create password" />
+          <input type="password" placeholder="Create password" formControlName="password" >
+          @if (
+                (signupForm.get('password')?.touched)
+          ) {
+          <div class="error-box">
+            @if (signupForm.get('password')?.errors?.['required']) {
+              <small class="error">Password is required</small>
+            }
+            @if (signupForm.get('password')?.errors?.['minlength']) {
+              <small class="error">Minimum 6 characters required</small>
+            }
+          </div>
+        }
         </div>
 
         <div class="form-group">
           <label>Confirm Password</label>
-          <input type="password" placeholder="Confirm password" />
+          <input type="password" placeholder="Confirm password" formControlName="confirm_password" />
+          @if (
+                (signupForm.get('confirm_password')?.touched)
+          ) {
+          <div class="error-box">
+            @if (signupForm.get('confirm_password')?.errors?.['required']) {
+              <small class="error">Password is required</small>
+            }
+            @if (signupForm.get('confirm_password')?.errors?.['minlength']) {
+              <small class="error">Minimum 6 characters required</small>
+            }
+          </div>
+        }
         </div>
 
-        <button type="submit">Sign Up</button>
+        <button type="submit" (click)="signup()">Sign Up</button>
 
         <p class="login-link">
           Already have an account?
